@@ -203,6 +203,7 @@ export default class SearchBar extends React.Component<
     const {
       prefixCls,
       showCancelButton,
+      noCancelButton,
       disabled,
       placeholder,
       className,
@@ -284,13 +285,16 @@ export default class SearchBar extends React.Component<
             <a onClick={this.onClear} className={clearCls} />
           </TouchFeedback>
         </div>
-        <div
-          className={cancelCls}
-          onClick={this.onCancel}
-          ref={el => (this.rightBtnRef = el)}
-        >
-          {this.props.cancelText || cancelText}
-        </div>
+        {
+          noCancelButton ? null :
+            (<div
+                className={cancelCls}
+                onClick={this.onCancel}
+                ref={el => (this.rightBtnRef = el)}
+              >
+                {this.props.cancelText || cancelText}
+              </div>)
+        }
       </form>
     );
   }
