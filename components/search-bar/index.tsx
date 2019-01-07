@@ -204,6 +204,7 @@ export default class SearchBar extends React.Component<
       prefixCls,
       showCancelButton,
       noCancelButton,
+      hideClearButton,
       disabled,
       placeholder,
       className,
@@ -281,9 +282,10 @@ export default class SearchBar extends React.Component<
             maxLength={maxLength}
             {...getDataAttr(this.props)}
           />
-          <TouchFeedback activeClassName={`${prefixCls}-clear-active`}>
-            <a onClick={this.onClear} className={clearCls} />
-          </TouchFeedback>
+          {hideClearButton ? null :
+            <TouchFeedback activeClassName={`${prefixCls}-clear-active`}>
+              <a onClick={this.onClear} className={clearCls}/>
+            </TouchFeedback>}
         </div>
         {
           noCancelButton ? null :
